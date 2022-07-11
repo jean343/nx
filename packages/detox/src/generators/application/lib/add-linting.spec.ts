@@ -12,11 +12,13 @@ describe('Add Linting', () => {
     addProject(tree, {
       name: 'my-app-e2e',
       projectName: 'my-app-e2e',
+      projectDirectory: 'apps',
       projectRoot: 'apps/my-app-e2e',
       project: 'my-app',
       appFileName: 'my-app',
       appClassName: 'MyApp',
       linter: Linter.EsLint,
+      framework: 'react-native',
     });
   });
 
@@ -24,11 +26,13 @@ describe('Add Linting', () => {
     addLinting(tree, {
       name: 'my-app-e2e',
       projectName: 'my-app-e2e',
+      projectDirectory: 'apps',
       projectRoot: 'apps/my-app-e2e',
       project: 'my-app',
       appFileName: 'my-app',
       appClassName: 'MyApp',
       linter: Linter.EsLint,
+      framework: 'react-native',
     });
     const project = readProjectConfiguration(tree, 'my-app-e2e');
 
@@ -40,11 +44,13 @@ describe('Add Linting', () => {
     addLinting(tree, {
       name: 'my-app-e2e',
       projectName: 'my-app-e2e',
+      projectDirectory: 'apps',
       projectRoot: 'apps/my-app-e2e',
       project: 'my-app',
       appFileName: 'my-app',
       appClassName: 'MyApp',
       linter: Linter.TsLint,
+      framework: 'react-native',
     });
     const project = readProjectConfiguration(tree, 'my-app-e2e');
 
@@ -58,11 +64,13 @@ describe('Add Linting', () => {
     addLinting(tree, {
       name: 'my-app-e2e',
       projectName: 'my-app-e2e',
+      projectDirectory: 'apps',
       projectRoot: 'apps/my-app-e2e',
       project: 'my-app',
       appFileName: 'my-app',
       appClassName: 'MyApp',
       linter: Linter.None,
+      framework: 'react-native',
     });
     const project = readProjectConfiguration(tree, 'my-app-e2e');
 

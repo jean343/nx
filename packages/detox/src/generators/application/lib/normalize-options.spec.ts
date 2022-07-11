@@ -17,14 +17,17 @@ describe('Normalize Options', () => {
       targets: {},
     });
     const schema: Schema = {
+      framework: 'react-native',
       name: 'my-app-e2e',
       project: 'my-app',
       linter: Linter.EsLint,
     };
     const options = normalizeOptions(appTree, schema);
     expect(options).toEqual({
+      framework: 'react-native',
       name: 'my-app-e2e',
       projectName: 'my-app-e2e',
+      projectDirectory: 'apps',
       projectRoot: 'apps/my-app-e2e',
       project: 'my-app',
       appFileName: 'my-app',
@@ -39,6 +42,7 @@ describe('Normalize Options', () => {
       targets: {},
     });
     const schema: Schema = {
+      framework: 'react-native',
       name: 'myAppE2e',
       project: 'myApp',
     };
@@ -49,7 +53,9 @@ describe('Normalize Options', () => {
       name: 'my-app-e2e',
       project: 'myApp',
       projectName: 'my-app-e2e',
+      projectDirectory: 'apps',
       projectRoot: 'apps/my-app-e2e',
+      framework: 'react-native',
     });
   });
 
@@ -59,6 +65,7 @@ describe('Normalize Options', () => {
       targets: {},
     });
     const schema: Schema = {
+      framework: 'react-native',
       name: 'my-app-e2e',
       project: 'my-app',
       directory: 'directory',
@@ -68,10 +75,12 @@ describe('Normalize Options', () => {
       project: 'my-app',
       appClassName: 'MyApp',
       appFileName: 'my-app',
+      projectDirectory: 'apps/directory',
       projectRoot: 'apps/directory/my-app-e2e',
       name: 'my-app-e2e',
       directory: 'directory',
       projectName: 'directory-my-app-e2e',
+      framework: 'react-native',
     });
   });
 
@@ -81,6 +90,7 @@ describe('Normalize Options', () => {
       targets: {},
     });
     const schema: Schema = {
+      framework: 'react-native',
       name: 'directory/my-app-e2e',
       project: 'my-app',
     };
@@ -90,8 +100,10 @@ describe('Normalize Options', () => {
       appClassName: 'MyApp',
       appFileName: 'my-app',
       projectRoot: 'apps/directory/my-app-e2e',
+      projectDirectory: 'apps',
       name: 'directory/my-app-e2e',
       projectName: 'directory-my-app-e2e',
+      framework: 'react-native',
     });
   });
 });

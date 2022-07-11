@@ -14,11 +14,13 @@ describe('Create Files', () => {
     createFiles(tree, {
       name: 'my-app-e2e',
       projectName: 'my-app-e2e',
+      projectDirectory: 'apps',
       projectRoot: 'apps/my-app-e2e',
       project: 'my-app',
       appFileName: 'my-app',
       appClassName: 'MyApp',
       linter: Linter.EsLint,
+      framework: 'react-native',
     });
 
     expect(tree.exists('apps/my-app-e2e/.detoxrc.json')).toBeTruthy();
