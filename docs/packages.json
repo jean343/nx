@@ -50,11 +50,6 @@
     }
   },
   {
-    "name": "cli",
-    "path": "generated/packages/cli.json",
-    "schemas": { "executors": [], "generators": [] }
-  },
-  {
     "name": "cra-to-nx",
     "path": "generated/packages/cra-to-nx.json",
     "schemas": { "executors": [], "generators": [] }
@@ -217,7 +212,8 @@
         "host",
         "remote",
         "cypress-component-configuration",
-        "component-test"
+        "component-test",
+        "setup-tailwind"
       ]
     }
   },

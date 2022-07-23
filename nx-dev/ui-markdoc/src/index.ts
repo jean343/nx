@@ -1,4 +1,4 @@
-import Markdoc from '@markdoc/markdoc';
+import { Node, parse, renderers, transform } from '@markdoc/markdoc';
 import { DocumentData } from '@nrwl/nx-dev/models-document';
 import React, { ReactNode } from 'react';
 import { Fence } from './lib/nodes/fence.component';
@@ -10,10 +10,12 @@ import { CustomLink } from './lib/nodes/link.component';
 import { link } from './lib/nodes/link.schema';
 import { Callout } from './lib/tags/callout.component';
 import { callout } from './lib/tags/callout.schema';
+import { GithubRepository } from './lib/tags/github-repository.component';
+import { githubRepository } from './lib/tags/github-repository.schema';
 import { Iframe } from './lib/tags/iframe.component';
 import { iframe } from './lib/tags/iframe.schema';
-import { nxCloudSection } from './lib/tags/nx-cloud-section.schema';
 import { NxCloudSection } from './lib/tags/nx-cloud-section.component';
+import { nxCloudSection } from './lib/tags/nx-cloud-section.schema';
 import { SideBySide } from './lib/tags/side-by-side.component';
 import { sideBySide } from './lib/tags/side-by-side.schema';
 import { Tab, Tabs } from './lib/tags/tabs.component';
@@ -33,6 +35,7 @@ export const getMarkdocCustomConfig = (
     },
     tags: {
       callout,
+      'github-repository': githubRepository,
       iframe,
       'nx-cloud-section': nxCloudSection,
       'side-by-side': sideBySide,
@@ -45,6 +48,7 @@ export const getMarkdocCustomConfig = (
     Callout,
     CustomLink,
     Fence,
+    GithubRepository,
     Heading,
     Iframe,
     NxCloudSection,
@@ -55,16 +59,15 @@ export const getMarkdocCustomConfig = (
   },
 });
 
+export const parseMarkdown: (markdown: string) => Node = (markdown) =>
+  parse(markdown);
+
 export const renderMarkdown: (document: DocumentData) => ReactNode = (
   document: DocumentData
 ): ReactNode => {
+  const ast = parseMarkdown(document.content.toString());
   const configuration = getMarkdocCustomConfig(document);
-  const ast = Markdoc.parse(document.content.toString());
-  return Markdoc.renderers.react(
-    Markdoc.transform(ast, configuration.config),
-    React,
-    {
-      components: configuration.components,
-    }
-  );
+  return renderers.react(transform(ast, configuration.config), React, {
+    components: configuration.components,
+  });
 };
